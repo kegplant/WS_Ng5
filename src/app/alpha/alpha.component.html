@@ -1,0 +1,16 @@
+<!-- submit username -->
+<div class='container'>   
+<div class='panel' id='panel1'>
+    <h2>{{locations[locale].name}}</h2>
+    <!-- {{weather|json}} -->
+    <p>Humidity: {{weather.main.humidity}}</p>
+    <p>Temperature (Average): {{weather.main.temp}}</p>
+    <p>Temperature (High): {{weather.main.temp_max}}</p>
+    <p>Temperature (Low): {{weather.main.temp_min}}</p>
+    <p>Status: {{weather.weather[0].description}}</p>
+</div>
+<div class='panel'>
+    <!-- <img [src]="'public/img/'+locations[locale].img"> -->
+    <img style='height:50px' [src]="locations[locale].img">
+    <!-- <img style='height:50px' src="https://static.pexels.com/photos/700450/pexels-photo-700450.jpeg"> -->
+</div>

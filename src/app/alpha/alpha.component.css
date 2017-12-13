@@ -1,0 +1,43 @@
+*{
+    /* background-color:bisque; */
+}
+.container{
+   
+    position:relative;
+    display:block;
+    padding:5px;
+    padding-top:0px;
+    margin:10px;
+    margin-top:30px;
+    border:1px solid black;    
+}
+.panel{
+    display:inline-block;
+    width:40%;
+    padding:10px;    
+    padding-top:20px;
+    height:100%;
+    vertical-align:top;
+}
+label{
+    margin-top:-20px;
+    margin-left:10px; 
+    position:relative;
+    top:20px;
+    z-index:1;
+    /* display:inline-block;
+    width:100%; */
+}
+div+div p{
+    color:green;
+}
+div+div h2, div+div p{
+    text-align: center;
+}
+
+#panel1{
+    text-align: left;
+}
+h2{
+    text-align: center;
+}

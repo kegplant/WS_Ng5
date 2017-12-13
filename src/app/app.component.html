@@ -1,0 +1,6 @@
+<div class='container'>
+    <h3>Dojo Weather Forecast</h3>
+    <span *ngFor='let location of locations'><a [routerLink]="[location.route]"> {{location.name}} </a> | </span>
+<!-- <app-alpha [location]='locations[0]'></app-alpha> -->
+<router-outlet></router-outlet>
+</div>   
