@@ -42,3 +42,4 @@ export class WeatherService {
   }
   // http://api.openweathermap.org/data/2.5/weather?zip=94040,us&APPID=7f88b8a2c4b2e0da7220ac532f775eb8
 }
+ 
