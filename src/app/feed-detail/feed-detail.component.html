@@ -1,13 +1,17 @@
 <div>
-    <div *ngFor="let question of questions, let idx = index">
+  <a href="/">Back</a>
+  <div *ngFor="let question of questions, let idx = index">
+    <div *ngIf="question.Id === Q_Id">
       <h3>
         <a href="/detail/{{question.Id}}"> Question {{idx+1}} </a>
       </h3>
-      <p [innerHTML]="question.Text"></p>
+      <div [innerHTML]="question.Text"> </div>
       <div>
         <i class="far fa-thumbs-up" (click)="addVote('plus',question)">{{question.upvotes}}</i>
         <i class="far fa-thumbs-down" (click)="addVote('minus',question)">{{question.downvotes}}</i>
       </div>
+      <br>
+      <br>
       <form (submit)="addAnswer(idx, question.Id)">
         <textarea type="text" name="answer" placeholder="Your answer " required minlength="2" [(ngModel)]="newAnswers[idx]">
         </textarea>
@@ -18,18 +22,20 @@
       <h5>
         Answers:
       </h5>
-      <div *ngFor="let answer of answers">
-        <div *ngIf="answer['Question-Id'] === question.Id">
-          <p [innerHTML]="answer.Answer"></p>
-          <div>
-            <i class="far fa-thumbs-up" (click)="addVote('plus',answer)">{{answer.upvotes}}</i>
-            <i class="far fa-thumbs-down" (click)="addVote('minus',answer)">{{answer.downvotes}}</i>
+      <div class="row">
+        <div *ngFor="let answer of answers" class="col s12 m6">
+          <div *ngIf="answer['Question-Id'] === question.Id" class="card blue darken-2 small">
+            <div class="card-content white-text ">
+              <p>{{answer.created_at}}</p>
+              <p [innerHTML]="answer.Answer" (click)="toggleClass($event)"> </p>
+            </div>
+            <div class="card-action">
+              <i class="far fa-thumbs-up" (click)="addVote('plus',answer)">{{answer.upvotes}}</i>
+              <i class="far fa-thumbs-down" (click)="addVote('minus',answer)">{{answer.downvotes}}</i>
+            </div>
           </div>
-          <br>
         </div>
       </div>
-      <hr>
     </div>
-    
   </div>
-<div><a href="/">Back</a></div>
+</div>

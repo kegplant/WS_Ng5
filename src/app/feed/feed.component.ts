@@ -1,6 +1,16 @@
-import { Component, OnInit } from '@angular/core';
-import { QnAService } from '../qn-a.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import {
+  QnAService
+} from '../qn-a.service';
+import {
+  Question
+} from '../question';
+import {
+  Answer
+} from '../answer';
 import * as moment from "moment";
 
 @Component({
@@ -9,32 +19,36 @@ import * as moment from "moment";
   styleUrls: ['./feed.component.css']
 })
 export class FeedComponent implements OnInit {
-  questions: {}[];//question class
-  answers: {}[];
-  newAnswers: String[]=[];
-  constructor(private _QnAService: QnAService, private router: Router,) { }
+  questions: Question[]; //question class
+  answers: Answer[];
+  newAnswers: String[] = [];
+  constructor(private _QnAService: QnAService) {}
 
   ngOnInit() {
     this._QnAService.init();
-    this._QnAService.questions.subscribe(questions=>this.questions=questions);
-    this._QnAService.answers.subscribe(answers=>this.answers=answers);
+    this._QnAService.questions.subscribe(questions => this.questions = questions);
+    this._QnAService.answers.subscribe(answers => this.answers = answers);
   }
-  addVote(action,question){//a hack since we're not persisting data here; would use question id otherwise
-  if(action==="plus"){
-      question.upvotes = String(1+Number(question.upvotes||"0"));
-    }else{
-      question.downvotes = String(1+Number(question.downvotes||"0"));
+  addVote(action: String, question: Question) { //a hack since we're not persisting data here; would use question id otherwise
+    if (action === "plus") {
+      question.upvotes = String(1 + Number(question.upvotes || "0"));
+    } else {
+      question.downvotes = String(1 + Number(question.downvotes || "0"));
     }
   }
-  addAnswer(index, Question_Id){
-    let newAnswer={
+  addAnswer(index, Question_Id: String) {
+    let newAnswer = {
       "Question-Id": Question_Id,
       Answer: this.newAnswers[index],
-      created_at: moment().format("DD/MMM/YY HH:mm")
-      //date as well
+      created_at: moment().format("DD/MMM/YY HH:mm"),
+      upvotes: "0",
+      downvotes: "0",
     }
     this.answers.unshift(newAnswer);
-    this.newAnswers[index]="";
+    this.newAnswers[index] = "";
   }
-//moment("12/Apr/18 13:30","DD/MMM/YY HH:mm")
+  toggleClass(e) {
+    console.log(e.target.parentNode.parentNode.parentNode);
+    e.target.parentNode.parentNode.parentNode.classList.toggle("small");
+  }
 }
