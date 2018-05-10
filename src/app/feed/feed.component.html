@@ -1,0 +1,37 @@
+<div>
+  <div *ngFor="let question of questions, let idx = index">
+    <h3> 
+      <a href="/detail/{{question.Id}}"> Question {{idx+1}} </a>
+    </h3>
+    <div [innerHTML]="question.Text"></div>
+    <div>
+      <i class="far fa-thumbs-up" (click)="addVote('plus',question)">{{question.upvotes}}</i>
+      <i class="far fa-thumbs-down" (click)="addVote('minus',question)">{{question.downvotes}}</i>
+    </div>
+    <br>
+    <br>
+    <form (submit)="addAnswer(idx, question.Id)">
+      <textarea type="text" name="answer" placeholder="Your answer " required minlength="2" [(ngModel)]="newAnswers[idx]">
+      </textarea>
+      <br>
+      <button type="submit">submit answer</button>
+    </form>
+    <br>
+    <h5>
+      Answers:
+    </h5>
+    <div *ngFor="let answer of answers">
+      <div *ngIf="answer['Question-Id'] === question.Id">
+        <div>{{answer.created_at}}</div>
+        <div [innerHTML]="answer.Answer"></div>
+        <div>
+          <i class="far fa-thumbs-up" (click)="addVote('plus',answer)">{{answer.upvotes}}</i>
+          <i class="far fa-thumbs-down" (click)="addVote('minus',answer)">{{answer.downvotes}}</i>
+        </div>
+        <br>
+      </div>
+    </div>
+    <hr>
+  </div>
+  
+</div>
