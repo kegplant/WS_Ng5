@@ -3,7 +3,7 @@ import {
 } from '@angular/core';
 import {
   BehaviorSubject
-} from 'Rxjs';
+} from 'rxjs';
 import {
   HttpClient
 } from '@angular/common/http';
