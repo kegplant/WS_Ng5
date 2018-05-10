@@ -14,7 +14,6 @@ import { FeedDetailComponent } from './feed-detail/feed-detail.component';
 import {QnAService} from './qn-a.service'
 
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,11 +22,10 @@ import {QnAService} from './qn-a.service'
   ],
   imports: [
     BrowserModule,
-    FormsModule, // <-- Include module in our AppModules
+    FormsModule,
     HttpModule,
     HttpClientModule,
-    AppRoutingModule, //<----
-    
+    AppRoutingModule,
     // RouterModule
   ],
   providers: [QnAService,],
