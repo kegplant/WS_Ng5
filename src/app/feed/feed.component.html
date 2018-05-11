@@ -1,7 +1,7 @@
 <div>
   <div *ngFor="let question of questions, let idx = index">
     <h3>
-      <a href="/detail/{{question.Id}}"> Question {{idx+1}} </a>
+      <a [routerLink]="['/detail',question.Id]"> Question {{idx+1}} </a>
     </h3>
     <div [innerHTML]="question.Text"> </div>
     <div>

@@ -1,9 +1,9 @@
 <div>
-  <a href="/">Back</a>
+  <a [routerLink]="['/']">>Back</a>
   <div *ngFor="let question of questions, let idx = index">
     <div *ngIf="question.Id === Q_Id">
       <h3>
-        <a href="/detail/{{question.Id}}"> Question {{idx+1}} </a>
+         Question {{idx+1}} 
       </h3>
       <div [innerHTML]="question.Text"> </div>
       <div>

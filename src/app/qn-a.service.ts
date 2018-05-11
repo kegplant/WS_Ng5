@@ -19,8 +19,12 @@ import * as moment from 'moment';
 export class QnAService {
   questions: BehaviorSubject < Question[] > = new BehaviorSubject([]);
   answers: BehaviorSubject < Answer[] > = new BehaviorSubject([]);
+  isInitialized=false;
   constructor(private _http: HttpClient) {}
   init() {
+    if(this.isInitialized) return;
+    this.isInitialized=true;
+    console.log("initializing");
     this.getQuestions();
     this.getAnswers();
   }
