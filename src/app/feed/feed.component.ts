@@ -30,11 +30,13 @@ export class FeedComponent implements OnInit {
     this._QnAService.answers.subscribe(answers => this.answers = answers);
   }
   addVote(action: String, question: Question) { //a hack since we're not persisting data here; would use question id otherwise
-    if (action === "plus") {
+    if (action === "plus") {      
       question.upvotes = String(1 + Number(question.upvotes || "0"));
     } else {
       question.downvotes = String(1 + Number(question.downvotes || "0"));
     }
+    this._QnAService.updateAnswers(this.answers);
+    this._QnAService.updateQuestions(this.questions);
   }
   addAnswer(index, Question_Id: String) {
     let newAnswer = {
@@ -46,6 +48,7 @@ export class FeedComponent implements OnInit {
     }
     this.answers.unshift(newAnswer);
     this.newAnswers[index] = "";
+    this._QnAService.updateAnswers(this.answers);
   }
   toggleClass(e) {
     console.log(e.target.parentNode.parentNode.parentNode);

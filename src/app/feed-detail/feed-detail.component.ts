@@ -17,7 +17,7 @@ import {
   Answer 
 } from '../answer';
 import * as moment from "moment";
-
+ 
 @Component({
   selector: 'app-feed-detail',
   templateUrl: './feed-detail.component.html',
@@ -47,6 +47,8 @@ export class FeedDetailComponent implements OnInit {
     } else {
       question.downvotes = String(1 + Number(question.downvotes || "0"));
     }
+    this._QnAService.updateAnswers(this.answers);
+    this._QnAService.updateQuestions(this.questions);
   }
   addAnswer(index, Question_Id: String) {
     let newAnswer = {
@@ -58,6 +60,7 @@ export class FeedDetailComponent implements OnInit {
     }
     this.answers.unshift(newAnswer);
     this.newAnswers[index] = "";
+    this._QnAService.updateAnswers(this.answers);
   }
   toggleClass(e) {
     console.log(e.target.parentNode.parentNode.parentNode);
